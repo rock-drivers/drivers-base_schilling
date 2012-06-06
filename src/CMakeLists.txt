@@ -1,7 +1,7 @@
 rock_library(base_schilling
-    SOURCES Dummy.cpp
-    HEADERS Dummy.hpp)
+    SOURCES Driver.cpp
+    HEADERS Driver.hpp SchillingRaw.hpp
+    DEPS_PKGCONFIG base-types iodrivers_base)
 
-rock_executable(base_schilling_bin Main.cpp
-    DEPS base_schilling)
+
 

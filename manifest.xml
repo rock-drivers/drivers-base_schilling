@@ -1,6 +1,6 @@
 <package>
-  <description brief="base library for schilling devices using C4 protocol">
-  base library for schilling devices using C4 protocol
+  <description brief="base class library for schilling devices using C4 protocol">
+  implemented Read Cmd, Stat and Write to be done
   </description>
   <author>Sitta Buhmann/sbuhmann@marum.de</author>
   <license></license>
