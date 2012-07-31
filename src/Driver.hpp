@@ -37,7 +37,7 @@ namespace base_schilling
         /** Extract a valid response from incoming Data
          *
          */
-        int extractPacket (uint8_t const *buffer, size_t buffer_size) const;
+        virtual int extractPacket (uint8_t const *buffer, size_t buffer_size) const;
 	
 	virtual void setCS(char *cData);
 

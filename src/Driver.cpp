@@ -1,10 +1,16 @@
 #include "Driver.hpp"
 #include "SchillingRaw.hpp"
+#include <act_schilling/Error.hpp>
+#include <base/logging.h>
 #include <iostream>
 #include <map>
+#include <string.h>
 
 using namespace base_schilling;
 using namespace std;
+using namespace oro_marum;
+
+
 
 
 Driver::Driver(int max_packet_size, bool extract_last)
@@ -71,21 +77,19 @@ void Driver::read(int timeout)
     SCHILL_REPL_CHG_MSG==header->type){
     len = header->length;
   }
-  //TODO: handle stat msg
   if(mRegMap.size() != len){
     return;
   }
   map<uint8_t,uint8_t>::iterator it;
   int i = 0;
+  char szOut[128];
+  sprintf(szOut,"got msg, len %i :",len);
   for( it = mRegMap.begin(); it != mRegMap.end(); it++ ) {
     it->second = (uint8_t)(unsigned char)buffer[3+i]; 
     i++;
-    //cout <<"length " <<len <<" got value: " <<(int8_t)buffer[3+i] <<" "<<it->second <<endl; 
-    
+    sprintf(szOut+strlen(szOut),"%02x | ",(int8_t)buffer[3+i]);    
   }
-  //char szOut[24];
-  //sprintf(szOut,"%02x %02x ",(int8_t)buffer[3],(int8_t)buffer[4]);
-  //cout <<"length " <<len <<" got values: " <<szOut <<endl; 
+  LOG_DEBUG("%s",szOut);
   return;
 }
 
@@ -98,6 +102,9 @@ int Driver::extractPacket (uint8_t const *buffer, size_t buffer_size) const
       if(i){
 	return -i;
       }
+      if(buffer_size<3){
+	return 0;
+      }
       size_t len = ((schilling_raw::MsgHeader*)buffer)->length + SCHILL_LEN_HEADER;
       if(buffer_size >= len){
 	return len;
@@ -106,7 +113,6 @@ int Driver::extractPacket (uint8_t const *buffer, size_t buffer_size) const
     }
   }
   return -buffer_size;
-  //TODO: handle stat msg
 }
 
 void Driver::setCS(char *cData)
@@ -126,7 +132,7 @@ void Driver::setCS(char *cData)
 void Driver::checkCS(const char *cData)
 {
   if (!cData){
-    throw std::runtime_error("empty Data");
+        throw MarError(MARSTR_PARAMINV,MARERROR_PARAMINV);
   }
   schilling_raw::MsgHeader  *header = (schilling_raw::MsgHeader*)cData;
   int length = header->length + SCHILL_LEN_HEADER;
@@ -135,7 +141,7 @@ void Driver::checkCS(const char *cData)
     cCs += cData[i];
   }
   if (cCs != cData[length-1]){
-    throw std::runtime_error("invalid checksum");
+    throw MarError(MARSTR_CHECKSUM,MARERROR_CHECKSUM);
   }
   return;
 }
