@@ -29,6 +29,8 @@ namespace base_schilling
 	 */
         virtual void sendReadMsg();
 	
+	virtual void sendWriteMsg(int cmd, std::vector<uint8_t>* regs = NULL);
+	
         
     protected:
         /** reading requested registers, storing into regMap  */

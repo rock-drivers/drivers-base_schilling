@@ -62,6 +62,22 @@ void Driver::sendReadMsg()
   setCS((char*)msg.data());
   writePacket(msg.data(),msg.size());
 }
+
+void Driver::sendWriteMsg(int cmd, std::vector<uint8_t>* regs)
+{
+  uint len = regs ? regs->size() : 0;
+  std::vector<uint8_t> msg(SCHILL_LEN_HEADER + len + 1);
+  schilling_raw::MsgHeader *header = (schilling_raw::MsgHeader*)msg.data();
+  header->type = SCHILL_CMD_MSG;
+  header->address = mAddress;
+  header->length = len + 1;
+  header->cmd = cmd;
+  for(int i = 0; i<len; i++){
+    msg[SCHILL_LEN_HEADER+i] = (*regs)[i];
+  }
+  setCS((char*)msg.data());
+  writePacket(msg.data(),msg.size());
+}
  
 void Driver::read(int timeout)
 {

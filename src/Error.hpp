@@ -8,6 +8,7 @@
 
 #define ACTALARM_BASE			0x2000
 #define UCMALARM_BASE			0x3000
+#define LCUALARM_BASE			0x4000
 
 #define MARERROR_BASE			0x5000
 
@@ -35,7 +36,12 @@
 #define UCMALARM_DA			UCMALARM_BASE + 2
 #define UCMALARM_EEPROM			UCMALARM_BASE + 3
 
-
+#define LCUALARM_FAULT			LCUALARM_BASE + 1
+#define LCUALARM_WATER			LCUALARM_BASE + 2
+#define LCUALARM_WATERLATCH		LCUALARM_BASE + 3
+#define LCUALARM_ACJB			LCUALARM_BASE + 4
+#define LCUALARM_ACJB_WATER		LCUALARM_BASE + 5
+#define LCUALARM_ACJB_WATERLATCH	LCUALARM_BASE + 6
 
 #define MARSTR_COMMS			"Communication failure"
 
@@ -60,6 +66,13 @@
 #define UCMSTR_AD			"AD Failure"
 #define UCMSTR_DA			"DA Failure"
 #define UCMSTR_EEPROM			"EEPROM Failure"
+
+#define LCUSTR_FAULT			"Fault, over-current in channel"
+#define LCUSTR_WATER			"Water Leak detected"
+#define LCUSTR_WATERLATCH		"Water Leak Latch"
+#define LCUSTR_ACJB			"AC J-Box communication failure"
+#define LCUSTR_ACJB_WATER		"AC J-Box Water Leak detected"
+#define LCUSTR_ACJB_WATERLATCH		"AC J-Box Water Leak Latch"
 
 
 namespace oro_marum{
