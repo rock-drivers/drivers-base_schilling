@@ -9,6 +9,7 @@
 #define ACTALARM_BASE			0x2000
 #define UCMALARM_BASE			0x3000
 #define LCUALARM_BASE			0x4000
+#define VISALARM_BASE			0x6000
 
 #define MARERROR_BASE			0x5000
 
@@ -43,6 +44,12 @@
 #define LCUALARM_ACJB_WATER		LCUALARM_BASE + 5
 #define LCUALARM_ACJB_WATERLATCH	LCUALARM_BASE + 6
 
+#define VISALARM_SYNTAX			VISALARM_BASE + 1
+#define VISALARM_BUFF_FULL		VISALARM_BASE + 2
+#define VISALARM_CMD_CANCEL		VISALARM_BASE + 3
+#define VISALARM_NOSOCK			VISALARM_BASE + 4
+#define VISALARM_CMD_NOEXEC		VISALARM_BASE + 5
+
 #define MARSTR_COMMS			"Communication failure"
 
 #define MARSTR_CHECKSUM			"checksum error"
@@ -73,6 +80,12 @@
 #define LCUSTR_ACJB			"AC J-Box communication failure"
 #define LCUSTR_ACJB_WATER		"AC J-Box Water Leak detected"
 #define LCUSTR_ACJB_WATERLATCH		"AC J-Box Water Leak Latch"
+
+#define VISSTR_SYNTAX			"syntax error"
+#define VISSTR_BUFF_FULL		"command buffer full"
+#define VISSTR_CMD_CANCEL		"command cancel"
+#define VISSTR_NOSOCK			"no sockets"
+#define VISSTR_CMD_NOEXEC		"command not executable"
 
 
 namespace oro_marum{
