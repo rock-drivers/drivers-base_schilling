@@ -22,12 +22,18 @@ namespace schilling_raw
     unsigned char address;
     unsigned char length;
     unsigned char cmd;
+    MsgHeader()
+      : type(0),address(0),length(0),cmd(0)
+      {}
   };
 
   struct Msg
   {
     MsgHeader header;
     char*  msg_body;
+    Msg()
+      : msg_body(NULL)
+      {}
   }; 
   
 }

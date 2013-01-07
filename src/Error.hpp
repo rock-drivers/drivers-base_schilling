@@ -113,12 +113,12 @@ namespace oro_marum{
     struct LogMessage {
         base::Time  	time;
         LogLevel       	log_level;
-	int 		errorId;
+	int 		error_id;
         std::string message;
         LogMessage()
-            : log_level(None) {};
+            : log_level(None),error_id(0) {};
         LogMessage(LogLevel level, std::string msg, int error = 0)
-            : log_level(level), errorId(error)
+            : log_level(level), error_id(error)
         {
             time = base::Time::now();
             message = msg;
@@ -130,11 +130,11 @@ namespace oro_marum{
 	  MarError *marError = dynamic_cast<MarError*>(&error);
 	  if(marError){
 	    log_level = marError->level();
-	    errorId = marError->id();
+	    error_id = marError->id();
 	  }
 	  else{
 	    log_level = Debug;
-	    errorId = 0;
+	    error_id = 0;
 	  }
 	}
     };
