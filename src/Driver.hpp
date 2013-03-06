@@ -34,7 +34,7 @@ namespace base_schilling
         
     protected:
         /** reading requested registers, storing into regMap  */
-        virtual void read(int timeout);
+        virtual void read();
 
         /** Extract a valid response from incoming Data
          *

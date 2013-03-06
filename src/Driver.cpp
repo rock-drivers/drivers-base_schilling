@@ -79,10 +79,10 @@ void Driver::sendWriteMsg(int cmd, std::vector<uint8_t>* regs)
   writePacket(msg.data(),msg.size());
 }
  
-void Driver::read(int timeout)
+void Driver::read()
 {
   char buffer[MAX_PACKET_SIZE];
-  size_t packet_size = readPacket(reinterpret_cast<uint8_t *>( buffer), MAX_PACKET_SIZE, timeout);
+  size_t packet_size = readPacket(reinterpret_cast<uint8_t *>( buffer), MAX_PACKET_SIZE);
   if(packet_size<SCHILL_LEN_HEADER){
     return;
   }
@@ -98,14 +98,14 @@ void Driver::read(int timeout)
   }
   map<uint8_t,uint8_t>::iterator it;
   int i = 0;
-  char szOut[128];
-  sprintf(szOut,"got msg, len %i :",len);
+  //char szOut[512];
+  //sprintf(szOut,"got msg, len %i :",len);
   for( it = mRegMap.begin(); it != mRegMap.end(); it++ ) {
     it->second = (uint8_t)(unsigned char)buffer[3+i]; 
     i++;
-    sprintf(szOut+strlen(szOut),"%02x | ",(int8_t)buffer[3+i]);    
+    //sprintf(szOut+strlen(szOut),"%02x | ",(int8_t)buffer[3+i]);    
   }
-  LOG_DEBUG("%s",szOut);
+  //LOG_DEBUG("%s",szOut);
   return;
 }
 
