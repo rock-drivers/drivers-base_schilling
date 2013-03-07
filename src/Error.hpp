@@ -10,6 +10,7 @@
 #define UCMALARM_BASE			0x3000
 #define LCUALARM_BASE			0x4000
 #define VISALARM_BASE			0x6000
+#define ALTALARM_BASE			0x7000
 
 #define MARERROR_BASE			0x5000
 
@@ -50,6 +51,8 @@
 #define VISALARM_NOSOCK			VISALARM_BASE + 4
 #define VISALARM_CMD_NOEXEC		VISALARM_BASE + 5
 
+#define ALTALARM_SERIAL			ALTALARM_BASE + 1
+
 #define MARSTR_COMMS			"Communication failure"
 
 #define MARSTR_CHECKSUM			"checksum error"
@@ -86,6 +89,8 @@
 #define VISSTR_CMD_CANCEL		"command cancel"
 #define VISSTR_NOSOCK			"no sockets"
 #define VISSTR_CMD_NOEXEC		"command not executable"
+
+#define ALTSTR_SERIAL			"serial failure, no switches accepted"
 
 
 namespace oro_marum{
