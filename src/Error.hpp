@@ -11,6 +11,7 @@
 #define LCUALARM_BASE			0x4000
 #define VISALARM_BASE			0x6000
 #define ALTALARM_BASE			0x7000
+#define CANALARM_BASE			0x8000
 
 #define MARERROR_BASE			0x5000
 
@@ -53,8 +54,14 @@
 
 #define ALTALARM_SERIAL			ALTALARM_BASE + 1
 
-#define MARSTR_COMMS			"Communication failure"
+#define CANALARM_XMTFULL		CANALARM_BASE + 1
+#define CANALARM_OVERRUN		CANALARM_BASE + 2
+#define CANALARM_BUSERR			CANALARM_BASE + 3
+#define CANALARM_BUSOFF			CANALARM_BASE + 4
+#define CANALARM_RX_OVERFLOW		CANALARM_BASE + 5
+#define CANALARM_TX_OVERFLOW		CANALARM_BASE + 6
 
+#define MARSTR_COMMS			"Communication failure"
 #define MARSTR_CHECKSUM			"checksum error"
 #define MARSTR_DEVNAK			"device Nak"
 #define MARSTR_PARAMINV			"invalid param"
@@ -91,6 +98,14 @@
 #define VISSTR_CMD_NOEXEC		"command not executable"
 
 #define ALTSTR_SERIAL			"serial failure, no switches accepted"
+
+#define CANSTR_XMTFULL			"controller send buffer is full, can be ignored"
+#define CANSTR_OVERRUN			"receive buffer overrun"
+#define CANSTR_BUSERR			"error count at limit"
+#define CANSTR_BUSOFF			"bus error, controller switched to bus-off"
+#define CANSTR_RX_OVERFLOW		"receive buffer overflow"
+#define CANSTR_TX_OVERFLOW		"transmit buffer overflow"
+
 
 
 namespace oro_marum{
