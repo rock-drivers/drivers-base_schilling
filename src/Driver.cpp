@@ -32,7 +32,7 @@ void Driver::setAddress(uint const& address)
 void Driver::setRegs(std::vector<uint8_t> const& regs)
 {
   mRegMap.clear();
-  for(int i=0; i < regs.size(); i++)
+  for(unsigned int i=0; i < regs.size(); i++)
   {
     mRegMap[regs[i]] = 0;
   }
@@ -72,7 +72,7 @@ void Driver::sendWriteMsg(int cmd, std::vector<uint8_t>* regs)
   header->address = mAddress;
   header->length = len + 1;
   header->cmd = cmd;
-  for(int i = 0; i<len; i++){
+  for(unsigned int i = 0; i<len; i++){
     msg[SCHILL_LEN_HEADER+i] = (*regs)[i];
   }
   setCS((char*)msg.data());
@@ -87,7 +87,7 @@ void Driver::read()
     return;
   }
   checkCS(buffer);
-  int len = 0;
+  unsigned int len = 0;
   schilling_raw::MsgHeader *header = (schilling_raw::MsgHeader*)buffer;
   if(SCHILL_REPL_UNCHG_MSG==header->type || 
     SCHILL_REPL_CHG_MSG==header->type){
