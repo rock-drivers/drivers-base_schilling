@@ -1,7 +1,7 @@
 #include "Driver.hpp"
 #include "SchillingRaw.hpp"
 #include "Error.hpp"
-#include <base/logging.h>
+#include <base/Logging.hpp>
 #include <iostream>
 #include <map>
 #include <string.h>
